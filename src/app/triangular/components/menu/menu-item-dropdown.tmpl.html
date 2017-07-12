@@ -1,0 +1,9 @@
+<md-button class="md-raised md-primary side-menu-link" ui-sref="triangular.labels">
+	<md-icon ng-if="::(triMenuItem.item.icon !== undefined)" class="side-menu-icon" md-font-icon="{{::triMenuItem.item.icon}}"></md-icon>
+	<span>{{::triMenuItem.item.name}}</span>
+</md-button>
+<ul class="drop-down-list">
+	<li ng-repeat="child in triMenuItem.item.children">
+		<tri-menu-item item="::child"></tri-menu-item>
+	</li>
+</ul>

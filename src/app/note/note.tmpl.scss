@@ -1,0 +1,80 @@
+.md-table-toolbar {
+  input {
+    width: 100%;
+    margin: 0;
+    border: none;
+    color: rgba(0, 0, 0, 0.87);
+    &:focus {
+        outline: none;
+    }
+  }
+}
+.edit-icon-margin {
+  margin: 0 5px;
+}
+.edit-icon, .edit-icon-margin {
+  &:hover {
+    cursor: pointer;
+    color: darkslategray !important;
+  }
+}
+.name-content {
+  overflow: hidden;
+  white-space: nowrap;
+  outline: none;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+}
+.card-container {
+  background-color: #f9f7e5;
+}
+.ctrl-content  a {
+  text-decoration: none;
+}
+.trash-btn {
+  color: white !important;
+}
+.edit-page {
+  padding: 20px;
+  width: 50% !important;
+  margin: 10px auto;
+}
+.desc-height {
+  height: 24px;
+}
+md-card-content {
+  padding: 10px !important;
+}
+md-card-actions {
+  margin: 0 !important;
+}
+md-radio-button.md-cyan-theme .md-on {
+  background-color: #000;
+}
+md-radio-button.md-cyan-theme.md-checked .md-off {
+  border-color: #000;
+}
+.radio-btn {
+  padding-left: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 3px;
+}
+div.pink {
+  background-color: rgba(233, 30, 99, .47);
+}
+div.lime {
+  background-color: rgba(205, 220, 57, .67);
+}
+div.amber {
+  background-color: rgba(255, 193, 7, .87);
+}
+div.deep-purple {
+  background-color: rgba(103, 58, 183, .87);
+}
+div.blue-grey {
+  background-color: rgba(96, 125, 139, .67);
+}
+div.teal {
+  background-color: rgba(0, 150, 136, .67);
+}

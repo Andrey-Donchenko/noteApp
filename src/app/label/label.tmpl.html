@@ -1,0 +1,30 @@
+<md-card>
+	<md-toolbar class="md-table-toolbar md-default">
+		<div class="md-toolbar-tools">
+			<md-button class="md-accent md-raised" ng-controller="ModalController as modalCtrl" ng-click="modalCtrl.createLabel()">create label</md-button>
+		</div>
+	</md-toolbar>
+	<md-table-container>
+		<table id="label-table" md-table ng-model="vm.selected" >
+			<thead md-head md-order="vm.query.order" md-on-reorder="vm.getLabels">
+			<tr md-row>
+					<th md-column md-numeric md-order-by="name">Name</th>
+					<th md-column md-numeric>Edit</th>
+					<th md-column md-numeric>Delete</th>
+				</tr>
+			</thead>
+			<tbody md-body ng-controller="ModalController as modalCtrl">
+				<tr ng-repeat="label in vm.labels | orderBy: vm.query.order | limitTo: vm.query.limit : (vm.query.page -1) * vm.query.limit">
+					<td md-cell>{{label.name}}</td>						
+					<td md-cell>
+						<md-icon class="md-accent edit-icon" md-font-icon="fa fa-edit" ng-hide="{{label.base}}" ng-click="modalCtrl.editLabel(label)"></md-icon>
+					</td>
+					<td md-cell>
+						<md-icon class="md-warn edit-icon" md-font-icon="fa fa-trash-o" ng-hide="{{label.base}}" ng-click="modalCtrl.deleteLabel(label)"></md-icon>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</md-table-container>
+	<md-table-pagination md-limit="vm.query.limit" md-limit-options="vm.limitOptions" md-page-select="vm.options.pageSelect" md-page="vm.query.page" md-total="{{vm.labels.length}}" md-on-paginate="vm.getLabels"></md-table-pagination>
+</md-card>

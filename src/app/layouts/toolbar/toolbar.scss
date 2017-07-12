@@ -1,0 +1,15 @@
+.triangular-toolbar {
+    &.ng-enter {
+        -webkit-transition: .5s;
+        -o-transition: .5s;
+        transition: .5s;
+    }
+
+    &.ng-enter {
+      @include slideInDown();
+    }
+
+    &.ng-leave {
+      display: none;
+    }
+}

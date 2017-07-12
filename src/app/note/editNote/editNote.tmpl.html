@@ -1,0 +1,33 @@
+<md-card class="edit-page">
+	<h2>Edit Note</h2><br>
+	<form name="editNote">
+		<md-input-container class="md-block">
+			<label>Title</label>
+			<input label="title" name="title" type="text" ng-model="vm.note.title" required/>
+			<div ng-messages="createNote.title.$error" md-auto-hide="false" ng-show="createNote.title.$touched">
+				<div ng-message when="required"><span>Please enter note's title.</span></div>
+			</div>
+		</md-input-container>
+		<md-input-container class="md-block">
+			<label>Description</label>
+			<textarea label="description" name="description" ng-model="vm.note.description"></textarea>
+		</md-input-container>
+		<md-input-container class="md-block">
+			<label>Label</label>
+			<div ng-controller="LoadDataController as LoadDataCtrl">
+				<md-select ng-model="vm.note.labels" multiple>
+					<md-option ng-value="label.name" ng-repeat="label in LoadDataCtrl.labels">{{label.name}}</md-option>
+				</md-select>
+			</div>
+		</md-input-container>
+		<md-radio-group class="margin-bottom-20" ng-model="vm.note.color" layout="row" layout-align="space-around center">
+			<div class="radio-btn {{item.color}}" layout="row" layout-align="center center" ng-repeat="item in vm.colors">
+				<md-radio-button ng-value="item.color"></md-radio-button>
+			</div>
+		</md-radio-group>
+		<div layout="row" layout-align="end center">
+			<md-button class="md-primary" ng-disabled="editNote.$invalid || vm.checkValid() || editNote.$pristine" ng-click="vm.editNote()">update</md-button>
+			<md-button ui-sref="triangular.notes">cancel</md-button>
+		</div>
+	</form>
+</md-card>

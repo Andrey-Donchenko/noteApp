@@ -1,0 +1,65 @@
+<div ng-if="vm.load">
+	<md-card>
+		<md-toolbar ng-hide="vm.selected.length || vm.filter.show" class="md-table-toolbar md-default">
+			<div class="md-toolbar-tools">
+				<md-button class="md-primary md-raised md-hue-2" ui-sref="triangular.createNote">create note</md-button>
+				<div flex></div>
+				<md-button class="md-icon-button" ng-click="vm.filter.show = true">
+					<md-icon md-font-icon="zmdi zmdi-filter-list"></md-icon>
+				</md-button>
+			</div>
+		</md-toolbar>
+		<md-toolbar ng-show="vm.filter.show && !vm.selected.length" class="md-table-toolbar md-default">
+			<div class="md-toolbar-tools">
+				<md-icon md-font-icon="zmdi zmdi-search"></md-icon>
+				<form flex="" name="vm.filter.form">
+					<input type="text" ng-model="vm.query.filter" ng-model-options="vm.filter.options" autofocus="vm.filter.show" placeholder="search">
+				</form>
+				<md-button class="md-icon-button" ng-click="vm.removeFilter()">
+					<md-icon md-font-icon="zmdi zmdi-close"></md-icon>
+				</md-button>
+			</div>
+		</md-toolbar>
+		<md-toolbar class="md-table-toolbar alternate" ng-show="vm.selected.length">
+			<div class="md-toolbar-tools" layout-align="space-between center">
+				<span>{{vm.selected.length}} {{vm.selected.length > 1 ? 'notes' : 'note'}} selected</span>
+				<md-icon class="edit-icon trash-btn" md-font-icon="fa fa-trash-o" ng-controller="ModalController as modalCtrl" ng-click="modalCtrl.deleteNote(vm.selected, vm.check)"></md-icon>
+			</div>
+		</md-toolbar>
+		<md-table-container>
+			<div class="card-container" layout="row" layout-wrap ng-show="true">
+				<div flex="20" flex-md="33" flex-sm="50" flex-xs="100" ng-repeat="note in vm.notes | filter : vm.checkLabel | filter : vm.query.filter">
+					<md-card ng-dblclick="vm.openNote(note.$id)">
+						<div class="{{note.color}}">
+							<md-card-content>
+								<div class="name-content">
+									<md-tooltip>{{note.title}}</md-tooltip>
+									<b>{{note.title}}</b>
+								</div>
+							</md-card-content>
+							<md-card-content>
+								<div class="name-content desc-height">
+									<md-tooltip>{{note.description}}</md-tooltip>
+									{{note.description}}
+								</div>
+							</md-card-content>
+						</div>
+						<md-divider></md-divider>
+						<md-card-actions class="ctrl-content" layout="row" layout-align="space-between center" layout-align-md="space-between center" layout-margin>
+							<md-checkbox class="md-primary margin-left-10" ng-model="vm.check[$index]" ng-change="vm.checkItem(note, $index)">
+							</md-checkbox>
+							<div>
+								<md-icon class="md-accent edit-icon-margin" md-font-icon="fa fa-edit" ui-sref="triangular.editNote({noteId: note.$id})">
+									<md-tooltip>Edit</md-tooltip>
+								</md-icon>
+								<md-icon class="md-warn edit-icon-margin" md-font-icon="fa fa-trash-o" ng-controller="ModalController as modalCtrl" ng-click="modalCtrl.deleteNote(vm.selected, vm.check, note)">
+									<md-tooltip>Delete</md-tooltip>
+								</md-icon>
+							</div>
+						</md-card-actions>
+					</md-card>
+				</div>
+			</div>
+		</md-table-container>
+	</md-card>
+</div>
